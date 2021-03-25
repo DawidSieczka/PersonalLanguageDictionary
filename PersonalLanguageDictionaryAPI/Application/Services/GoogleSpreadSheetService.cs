@@ -47,9 +47,6 @@ namespace Application.Services
         }
         public async Task<List<string>> Get(string sheetName, string sheetID)
         {
-            //var sheet = "Arkusz1";
-            //String spreadsheetId = "1M0Isg49ajjc5LP9V3dJ-4cderroZ8YMkA5Xf7qsvRTw";
-
             var service = InitService();
             
             // Define request parameters.
@@ -65,6 +62,12 @@ namespace Application.Services
                     //row[0] - eng
                     //row[1] - pl (tłumaczenie);
                     translation.Add($"{row[0]} == {row[1]}");
+                    
+                    if(row[0] != "" && row[1] == "")
+                    {
+                        //translate
+
+                    }
                 }
             }
 
