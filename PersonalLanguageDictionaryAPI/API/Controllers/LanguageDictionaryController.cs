@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System.Collections.Generic;
+using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace API.Controllers
             _googleSpreadSheetService = googleSpreadSheetService;
         }
         [HttpGet]
-        public async Task<string> GetAnything()
+        public async Task<List<string>> GetAnything()
         {
-            return await _googleSpreadSheetService.Get();
+            return await _googleSpreadSheetService.Get("Arkusz1", "1M0Isg49ajjc5LP9V3dJ-4cderroZ8YMkA5Xf7qsvRTw");
         }
     }
 }

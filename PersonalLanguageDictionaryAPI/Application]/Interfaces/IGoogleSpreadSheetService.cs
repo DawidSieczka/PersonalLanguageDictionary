@@ -8,6 +8,6 @@ namespace Application.Interfaces
 {
     public interface IGoogleSpreadSheetService
     {
-        Task<string> Get();
+        Task<List<string>> Get(string sheetName, string sheetID);
     }
 }
