@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalLanguageDictionaryUI", "PersonalLanguageDictionaryUI\PersonalLanguageDictionaryUI.csproj", "{078B6AA1-DE27-4671-A93E-C01B8BFC23B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalLanguageDictionaryUI.Application", "PersonalLanguageDictionaryUI.Application\PersonalLanguageDictionaryUI.Application.csproj", "{A42F89D1-7CD7-4D4A-BA8D-AAFE75D8FA9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{078B6AA1-DE27-4671-A93E-C01B8BFC23B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078B6AA1-DE27-4671-A93E-C01B8BFC23B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078B6AA1-DE27-4671-A93E-C01B8BFC23B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078B6AA1-DE27-4671-A93E-C01B8BFC23B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42F89D1-7CD7-4D4A-BA8D-AAFE75D8FA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42F89D1-7CD7-4D4A-BA8D-AAFE75D8FA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42F89D1-7CD7-4D4A-BA8D-AAFE75D8FA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42F89D1-7CD7-4D4A-BA8D-AAFE75D8FA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72B3C602-94FD-4854-BC1B-51E01DEA3B02}
+	EndGlobalSection
+EndGlobal
