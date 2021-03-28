@@ -1,0 +1,48 @@
+﻿@page "/DictionaryCollection"
+
+<div class="">
+
+    <div class="row min-vh-100">
+        <div class="w-100 h-25">
+            <h1 class="text-center m-5">Dictionary collection</h1>
+
+            <div class=" m-auto text-center">
+                <button @onclick="OnClick_PopulateTable">Fetch translation</button>
+            </div>
+        </div>
+
+        <div class="w-100 p-0 col-12 align-self-center">
+            <div class="text-center">
+                <table class="table m-auto w-25">
+                    @if (Words != null)
+                    {
+                        <tr>
+                            <th>@Words[0].BasicLanguage</th>
+                            <th>@Words[0].TranslatedLanguage</th>
+                        </tr>
+                        <tbody>
+
+                            @foreach (var word in Words)
+                            {
+                                <tr>
+                                    <td>
+                                        @word.BasicWord;
+                                    </td>
+                                    <td>
+                                        @word.TranslatedWord;
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <div class="text-center">
+                            Please, fetch the translation.
+                        </div>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,36 +1,59 @@
 ﻿@page "/Exam"
 
-<div class="">
-    
-    <div class="row min-vh-100">
-        <div class="w-100 h-25">
-            <h1 class="text-center m-5">ExamPage</h1>
-
-            <div class=" m-auto text-center">
-                <button>Get random</button>
-            </div>
+<div class="row min-vh-100">
+    <div class="w-100 h-25">
+        <h1 class="text-center m-5">Exam</h1>
+    </div>
+    @if (IsAnswered && !IsAnswerValid)
+    {
+        <div style="color: red">
+            <b>Wrong answer!</b>
         </div>
-        
-        <div class="w-100 p-0 col-12 align-self-center">
-            <div class="text-center">
-                <table class="m-auto w-25">
+    }
+    else if (IsAnswered && IsAnswerValid)
+    {
+        <div style="color: green">
+            <b>Correct answer!</b>
+        </div>
+    }
+
+    <div class="w-100 p-0 col-12 align-self-center">
+        <div class="text-center">
+            <table class="table m-auto w-25">
+                @if (Word != null || IsTranslationLoaded == true)
+                {
                     <tr>
-                        <th>English</th>
-                        <th>Polish</th>
+                        <th>@Word.BasicLanguage</th>
+                        <th>@Word.TranslatedLanguage</th>
                     </tr>
                     <tbody>
-                    <tr>
-                        <td>Dog</td>
-                        <td>Pies</td>
-                    </tr>
-                    <tr>
-                        <td>Cat</td>
-                        <td>kot</td>
-                    </tr>
+                        <tr>
+                            <td>@Word.BasicWord</td>
+                            <td>
+                                <form @onsubmit="SubmitEnteredValue">
+                                    <input @bind="@InputValue" />
+                                </form>
+                            </td>
+                        </tr>
                     </tbody>
-                </table>
+                }
+                else
+                {
+                    <div>
+                        Translation not loaded!
+                    </div>
+                }
+            </table>
+            <div>
+                @if (!IsAnswered)
+                {
+                    <button @onclick="GetProvidedAnswerValidation">Answer</button>
+                }
+                else
+                {
+                    <button @onclick="GetNextTranslation">Next</button>
+                }
             </div>
         </div>
     </div>
 </div>
-

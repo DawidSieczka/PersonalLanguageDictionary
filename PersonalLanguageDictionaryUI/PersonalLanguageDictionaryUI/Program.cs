@@ -14,21 +14,21 @@ namespace PersonalLanguageDictionaryUI
 {
     public class Program
     {
-        private static WebAssemblyHostBuilder builder;
+        private static WebAssemblyHostBuilder _builder;
         public static async Task Main(string[] args)
         {
-            builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-            AddServices(builder.Services);
+            _builder = WebAssemblyHostBuilder.CreateDefault(args);
+            _builder.RootComponents.Add<App>("#app");
+            AddServices(_builder.Services);
             
-            await builder.Build().RunAsync();
+            await _builder.Build().RunAsync();
 
         }
 
         public static void AddServices(IServiceCollection services)
         {
 
-            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(_builder.HostEnvironment.BaseAddress) });
             services.AddTransient<IPersonalLanguageDictionaryService, PersonalLanguageDictionaryService>();
             services.AddHttpClient();
         }

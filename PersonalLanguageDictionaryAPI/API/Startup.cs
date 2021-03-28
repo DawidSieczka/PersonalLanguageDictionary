@@ -1,21 +1,15 @@
 using Application;
+using Application.Handlers;
 using Application.Interfaces;
 using Application.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace API
 {
@@ -27,11 +21,31 @@ namespace API
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string _myAllowSpecificOrigins = "debugPolicy";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddCors(opts =>
+            //{
+            //    opts.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod());
+            //});
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _myAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddTransient<IGoogleSpreadSheetService, GoogleSpreadSheetService>();
+            services.AddTransient<IProvidedSingleTranslationValidatorHandler, ProvidedSingleTranslationValidatorHandler>();
+
             services.AddMediatR(Assembly.GetAssembly(typeof(toRemove)));
 
             services.AddControllers();
@@ -45,16 +59,21 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                app.UseCors(_myAllowSpecificOrigins);
             }
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
+            else
+            {
+                app.UseCors();
+            }
+            
 
             app.UseAuthorization();
 
